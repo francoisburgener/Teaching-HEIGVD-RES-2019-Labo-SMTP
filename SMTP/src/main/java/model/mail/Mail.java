@@ -2,11 +2,16 @@ package model.mail;
 
 import lombok.Getter;
 
+import java.util.LinkedList;
+
 public class Mail {
     @Getter
-    private String from, to, body, subject;
+    private String from, body, subject;
 
-    public Mail(String from, String to, String body, String subject) {
+    @Getter
+    private LinkedList<String> to;
+
+    public Mail(String from, LinkedList<String> to, String body, String subject) {
         this.from = from;
         this.to = to;
         this.body = body;
