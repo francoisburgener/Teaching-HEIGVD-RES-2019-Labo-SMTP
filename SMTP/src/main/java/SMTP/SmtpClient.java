@@ -34,12 +34,13 @@ public class SmtpClient implements ISmtpClient{
 
     public void sendMail(Mail mail) throws IOException {
         connect();
-
+        
         String line = reader.readLine();
+    
         writer.println("EHLO ping");
         writer.flush();
 
-        while ((line = reader.readLine()).equals("250 "));
+        while (!(line = reader.readLine()).startsWith("250 "));
 
         writer.println("MAIL FROM: <" + mail.getFrom() + ">");
         writer.flush();
@@ -56,16 +57,21 @@ public class SmtpClient implements ISmtpClient{
         writer.flush();
 
         line = reader.readLine();
-
-        writer.println("From: <" + mail.getFrom() + ">");
+    
+        writer.println("From: " + mail.getFrom());
         writer.flush();
 
         writer.print("To: ");
         for(String to : mail.getTo()){
-            writer.print("<" + to + ">,");
+            writer.print(to + ",");
             writer.flush();
-            line = reader.readLine();
         }
+        
+        writer.print("\r\n");
+        writer.println(mail.getSubject());
+        writer.println(mail.getBody());
+        writer.println(".");
+        writer.flush();
 
         disconnect();
     }

@@ -64,7 +64,7 @@ public class ConfigurationManager {
 		
 		while((line = reader.readLine()) != null){
 			String message = line;
-			while ((message = reader.readLine()) != null && !line.equals("--")){
+			while ((line = reader.readLine()) != null && !line.equals("--")){
 				message += line + "\r\n";
 			}
 			listMessages.add(message);
