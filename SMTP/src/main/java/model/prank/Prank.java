@@ -16,11 +16,16 @@ public class Prank {
         this.message = message;
     }
 
+    /**
+     * Create a prank mail
+     * @return A prank mail
+     */
     public Mail createMail(){
         LinkedList<String> addressesTo = new LinkedList<String>();
         for(Victim v : receptors){
             addressesTo.add(v.getMailAddress());
         }
+        //index to split the subject from the body
         int splitter = message.indexOf("\r\n");
         String subject = message.substring(0, splitter);
         String body = message.substring(splitter+1);

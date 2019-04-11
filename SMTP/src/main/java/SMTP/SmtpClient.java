@@ -19,12 +19,20 @@ public class SmtpClient implements ISmtpClient{
         this.port = port;
     }
 
+    /**
+     * Create connection
+     * @throws IOException
+     */
     private void connect() throws IOException {
         socket = new Socket(address, port);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
     }
 
+    /**
+     * Disconnect
+     * @throws IOException
+     */
     private void disconnect() throws IOException {
         writer.flush();
         writer.close();
@@ -32,6 +40,11 @@ public class SmtpClient implements ISmtpClient{
         socket.close();
     }
 
+    /**
+     * Send the mails over the connection with SMTP protocol
+     * @param mail The mails to be sent
+     * @throws IOException
+     */
     public void sendMail(Mail mail) throws IOException {
         connect();
         
@@ -66,9 +79,11 @@ public class SmtpClient implements ISmtpClient{
             writer.print(to + ",");
             writer.flush();
         }
-        
+
+
         writer.print("\r\n");
         writer.println(mail.getSubject());
+        writer.println("Content-Type: text/plain; charset=utf-8");
         writer.println(mail.getBody());
         writer.println(".");
         writer.flush();
