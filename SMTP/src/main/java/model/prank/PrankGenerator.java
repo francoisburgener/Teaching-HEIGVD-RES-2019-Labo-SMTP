@@ -27,7 +27,7 @@ public class PrankGenerator {
 		if(victims.size()/MAX_GROUP_SIZE < nbreGroups){
 			nbreGroups = victims.size()/MAX_GROUP_SIZE;
 		}
-		
+		System.out.println("Nombre de groupes: " + nbreGroups);
 		Group[] groups = new Group[nbreGroups];
 		int i = 0;
 		for(Victim v : victims){
@@ -61,7 +61,7 @@ public class PrankGenerator {
 	
 	public void send() throws IOException {
 		LinkedList<Prank> pranks = createPranks();
-		
+		System.out.println("Sending pranks");
 		for(Prank prank : pranks){
 			smtpClient.sendMail(prank.createMail());
 		}
