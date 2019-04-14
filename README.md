@@ -120,13 +120,20 @@ Maintenant si vous allez sur l'adresse **192.168.99.100:8282** vous devrez voire
 ![Diagram UML](diagram.png)
 
 ### Configuration Manager
-
-[Explication]
+Cette classe utilise le fichier .config dans lequel se trouvent les chemin des fichiers d'entrées ainsi que les données
+(liste de victimes, liste des messages de Prank)
 
 ### Smtp client
 
-[Explication]
+Cette classe permet de communiquer avec le serveur SMTP; la méthode sendMail() va connecter le client au serveur
+puis forger un mail et l'envoyer.
 
-[Diagram de flux entre client/serveur]
+![Diagram de flux entre client/serveur](flux-communication.png)
 
 ### Prank generator
+
+La classe PrankGenerator va utiliser les deux précédentes classes pour:
+1. Créer les groupes de victimes
+2. Forger un mail en en choisissant un de manière random depuis le fichier de config, prendre la première victime
+du groupe en tant qu'envoyeur et le reste en tant que récépteurs.
+3. Envoyer le mail via le Client SMTP
