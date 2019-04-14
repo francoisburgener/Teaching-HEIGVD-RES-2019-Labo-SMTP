@@ -117,7 +117,7 @@ Maintenant si vous allez sur l'adresse **192.168.99.100:8282** vous devrez voire
 
 ## Implementation
 
-![Diagram UML](diagram.PNG)
+![Diagram UML](diagram.png)
 
 ### Configuration Manager
 
