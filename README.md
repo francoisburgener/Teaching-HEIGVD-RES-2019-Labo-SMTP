@@ -128,7 +128,7 @@ Cette classe utilise le fichier .config dans lequel se trouvent les chemin des f
 Cette classe permet de communiquer avec le serveur SMTP; la méthode sendMail() va connecter le client au serveur
 puis forger un mail et l'envoyer.
 
-![Diagram de flux entre client/serveur](flux-communication.jpg)
+![Diagram de flux entre client/serveur](flux-communication.PNG)
 
 ### Prank generator
 
